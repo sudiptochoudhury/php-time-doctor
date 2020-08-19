@@ -1,0 +1,213 @@
+{
+    "name": "PHP TimeDoctor API",
+    "additionalParameters": true,
+    "additionalProperties": true,
+    "operations": {
+        "_withAdditionalJSONParameters": {
+            "additionalParameters": {
+                "location": "json"
+            }
+        },
+        "_withAdditionalQueryParameters": {
+            "additionalParameters": {
+                "location": "query"
+            }
+        },
+        "getCompanies": {
+            "httpMethod": "GET",
+            "description": "Returns the user's account(s)",
+            "uri": "/v1.1/companies",
+            "responseModel": "getResponse",
+            "parameters": {
+            }
+        },
+        "getProjects": {
+            "httpMethod": "GET",
+            "description": "Returns a collection of a user's projects",
+            "uri": "/v1.1/companies/projects",
+            "responseModel": "getResponse",
+            "parameters": {
+                "offset": {
+                    "location": "query"
+                },
+                "limit": {
+                    "location": "query"
+                },
+                "all": {
+                    "location": "query"
+                }
+            }
+        },
+        "getUsers": {
+            "httpMethod": "GET",
+            "description": "Returns a collection of the company's users",
+            "uri": "/v1.1/companies/{company_id}/users",
+            "responseModel": "getResponse",
+            "parameters": {
+                "company_id": {
+                    "required": true,
+                    "location": "query"
+                },
+                "emails": {
+                    "location": "query"
+                },
+                "include_manager": {
+                    "location": "query"
+                }
+            }
+        },
+        "getUser": {
+            "httpMethod": "GET",
+            "description": "Returns info about a user",
+            "uri": "/v1.1/companies/{company_id}/users/{user_id}",
+            "responseModel": "getResponse",
+            "parameters": {
+                "company_id": {
+                    "required": true,
+                    "location": "query"
+                },
+                "user_id": {
+                    "required": true,
+                    "location": "query"
+                }
+            }
+        },
+        "getUserTasks": {
+            "httpMethod": "GET",
+            "description": "Returns a collection of a user's tasks",
+            "uri": "/v1.1/companies/{company_id}/users/{user_id}/tasks",
+            "responseModel": "getResponse",
+            "parameters": {
+                "company_id": {
+                    "required": true,
+                    "location": "query"
+                },
+                "user_id": {
+                    "required": true,
+                    "location": "query"
+                },
+                "offset": {
+                    "location": "query"
+                },
+                "limit": {
+                    "location": "query"
+                },
+                "status": {
+                    "location": "query"
+                },
+                "latest_first": {
+                    "location": "query"
+                }
+            }
+        },
+        "getUserTask": {
+            "httpMethod": "GET",
+            "description": "Returns info about a user's task",
+            "uri": "/v1.1/companies/{company_id}/users/{user_id}/tasks/{task_id}",
+            "responseModel": "getResponse",
+            "parameters": {
+                "company_id": {
+                    "required": true,
+                    "location": "query"
+                },
+                "user_id": {
+                    "required": true,
+                    "location": "query"
+                },
+                "task_id": {
+                    "required": true,
+                    "location": "query"
+                }
+            }
+        },
+        "getWorklogs": {
+            "httpMethod": "GET",
+            "description": "Returns a collection of all user's worklogs under the given company Id in the URI",
+            "uri": "/v1.1/companies/{company_id}/worklogs",
+            "responseModel": "getResponse",
+            "parameters": {
+                "company_id": {
+                    "required": true,
+                    "location": "query"
+                },
+                "start_date": {
+                    "required": true,
+                    "location": "query"
+                },
+                "end_date": {
+                    "required": true,
+                    "location": "query"
+                },
+
+                "offset": {
+                    "location": "query"
+                },
+                "limit": {
+                    "location": "query"
+                },
+                "user_ids": {
+                    "location": "query"
+                },
+                "project_ids": {
+                    "location": "query"
+                },
+                "task_ids": {
+                    "location": "query"
+                },
+                "fields": {
+                    "location": "query"
+                },
+                "breaks_only": {
+                    "location": "query"
+                },
+                "consolidated": {
+                    "location": "query"
+                },
+                "last_modified": {
+                    "location": "query"
+                }
+            }
+        }
+    },
+    "models": {
+        "getResponse": {
+            "type": "object",
+            "additionalProperties": {
+                "location": "json"
+            }
+        },
+        "responseBody": {
+            "type": "object",
+            "additionalProperties": {
+                "location": "body"
+            }
+        },
+        "fullResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "location": "json"
+                    }
+                },
+                "status": {
+                    "location": "statusCode",
+                    "type": "integer"
+                },
+                "reason": {
+                    "location": "reasonPhrase",
+                    "type": "string"
+                },
+                "header": {
+                    "location": "header",
+                    "type": "string"
+                },
+                "body": {
+                    "location": "body",
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

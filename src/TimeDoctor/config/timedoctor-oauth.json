@@ -1,0 +1,150 @@
+{
+    "name": "PHP Time Doctor O-Auth API",
+    "additionalParameters": true,
+    "additionalProperties": true,
+    "operations": {
+        "_withAdditionalJSONParameters": {
+            "additionalParameters": {
+                "location": "json"
+            }
+        },
+        "_withAdditionalQueryParameters": {
+            "additionalParameters": {
+                "location": "query"
+            }
+        },
+        "getAuthCode": {
+            "httpMethod": "GET",
+            "description": "Authorization Code Grant flow: This flow is useful if you have your own server for your app.",
+            "uri": "/oauth/v2/auth?client_id={client_id}&response_type={response_type}&redirect_uri={redirect_uri}",
+            "responseModel": "getResponse",
+            "parameters": {
+                "client_id": {
+                    "required": true,
+                    "location": "query"
+                },
+                "redirect_uri": {
+                    "required": true,
+                    "location": "query"
+                },
+                "response_type": {
+                   "default": "code",
+                    "static": true,
+                    "location": "query"
+                }
+            }
+        },
+        "getAuthToken": {
+            "httpMethod": "GET",
+            "description": "Implicit Grant flow: Useful when you don't have your own server for your app.",
+            "uri": "/oauth/v2/auth?client_id={client_id}&response_type={response_type}&redirect_uri={redirect_uri}",
+            "responseModel": "getResponse",
+            "parameters": {
+                "client_id": {
+                    "required": true,
+                    "location": "query"
+                },
+                "redirect_uri": {
+                    "required": true,
+                    "location": "query"
+                },
+                "response_type": {
+                   "default": "token",
+                    "static": true,
+                    "location": "query"
+                }
+            }
+        },
+        "getToken": {
+            "httpMethod": "GET",
+            "description": "Authorization Code Grant flow: Use the auth code and get the access token from here.",
+            "uri": "/oauth/v2/token?client_id={client_id}&client_secret={client_secret}&grant_type={response_type}&redirect_uri={redirect_uri}",
+            "responseModel": "getResponse",
+            "parameters": {
+                "client_id": {
+                    "required": true,
+                    "location": "query"
+                },
+                "client_secret": {
+                    "required": true,
+                    "location": "query"
+                },
+                "redirect_uri": {
+                    "required": true,
+                    "location": "query"
+                },
+                "grant_type": {
+                   "default": "authorization_code",
+                    "static": true,
+                    "location": "query"
+                }
+            }
+        },
+        "refreshToken": {
+            "httpMethod": "GET",
+            "description": "Handling expired Access Token: Generate tokens from refresh token.",
+            "uri": "/oauth/v2/token?client_id={client_id}&client_secret={client_secret}&grant_type={response_type}&refresh_token={refresh_token}",
+            "responseModel": "getResponse",
+            "parameters": {
+                "client_id": {
+                    "required": true,
+                    "location": "query"
+                },
+                "client_secret": {
+                    "required": true,
+                    "location": "query"
+                },
+                "refresh_token": {
+                    "required": true,
+                    "location": "query"
+                },
+                "grant_type": {
+                   "default": "refresh_token",
+                    "static": true,
+                    "location": "query"
+                }
+            }
+        }
+    },
+    "models": {
+        "getResponse": {
+            "type": "object",
+            "additionalProperties": {
+                "location": "json"
+            }
+        },
+        "responseBody": {
+            "type": "object",
+            "additionalProperties": {
+                "location": "body"
+            }
+        },
+        "fullResponse": {
+          "type": "object",
+          "properties": {
+            "data": {
+                "type": "object",
+                "additionalProperties": {
+                    "location": "json"
+                }
+            },
+            "status": {
+              "location": "statusCode",
+              "type": "integer"
+            },
+            "reason": {
+              "location": "reasonPhrase",
+              "type": "string"
+            },
+            "header": {
+              "location": "header",
+              "type": "string"
+            },
+            "body": {
+              "location": "body",
+              "type": "string"
+            }
+          }
+        }
+    }
+}
