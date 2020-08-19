@@ -7,7 +7,7 @@ use SudiptoChoudhury\Support\Forge\Api\Client as ApiForge;
 /**
  * Class Api
  *
- * @method	array	getCompanies(array $parameters)
+ * @method	array	getCompanies(array $parameters = [])
  * @method	array	getProjects(array $parameters)
  * @method	array	getUsers(array $parameters)
  * @method	array	getUser(array $parameters)

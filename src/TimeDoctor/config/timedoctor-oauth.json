@@ -73,6 +73,10 @@
                     "required": true,
                     "location": "query"
                 },
+                "code": {
+                    "required": true,
+                    "location": "query"
+                },
                 "grant_type": {
                    "default": "authorization_code",
                     "static": true,

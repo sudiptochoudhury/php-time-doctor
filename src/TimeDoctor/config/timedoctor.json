@@ -122,7 +122,7 @@
         },
         "getWorklogs": {
             "httpMethod": "GET",
-            "description": "Returns a collection of all user's worklogs under the given company Id in the URI",
+            "description": "Returns a collection of all user's worklogs under the given company Id",
             "uri": "/v1.1/companies/{company_id}/worklogs",
             "responseModel": "getResponse",
             "parameters": {
