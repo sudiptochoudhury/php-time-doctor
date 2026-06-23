@@ -1,9 +1,122 @@
 # php-time-doctor
 
-PHP API Client for Time Doctor
+PHP API Client for Time Doctor API and nodeJS MCP Server for Time Doctor API.
 
 > Read all about Time Doctor API from [timedoctor.com](https://webapi.timedoctor.com/doc)
 
+## Quick Steps: 
+
+### STEP 1:
+Get [TimeDoctor `access_token`](https://webapi.timedoctor.com/doc#authentication) and store it in a file named `timedoctor.json` in the root of your project. The file should contain the following JSON data:
+
+```
+{
+    "access_token": "<<access_token>>"
+}
+```
+
+### STEP 2:
+
+run CLI commands 
+
+#### Command 1:
+```
+php timedoctor 
+```
+
+You are likely to see this:
+
+```
+Time Doctor API CLI tool - v1.0.0
+Use --help or -h for help.
+```
+
+> If you are in Linux or MacOS, you can make the file executable by running the following command:
+
+```
+chmod +x timedoctor
+```
+and then run the command as (without `php`):
+
+```
+./timedoctor
+```
+
+#### Command 2:
+```
+php timedoctor -h 
+```
+
+You are likely to see this:
+
+```
+Time Doctor API CLI tool - v1.0.0
+Use --help or -h for help.
+```
+
+
+#### Command 3:
+```
+php timedoctor getCompanies 
+```
+You see see User and Company information in JSON format.
+You can copy the company id for future use.
+
+
+#### Command 4:
+Get worklogs for a company between two dates. You need to pass `company_id`, `start_date` and `end_date` as parameters.
+```
+php timedoctor getWorklogs --company_id=2348758 --start_date=2026-06-01 --end_date=2026-06-30
+```
+
+You are likely to get a JSON response with worklogs for the given company between the given dates. 
+It does not give the total but enough information to calculate the total time etc.
+
+---
+## Using MCP Server
+
+> Make sure you have setup the CLI having `timedoctor.json` file in the root of your project with `access_token` as described above.
+
+JSON entry in MCP server JSON configuration file.
+
+```json
+{
+  "mcpServers": {
+    "timedoctor": {
+      "command": "node",
+      "args": [
+        "/path/to/your/project/timedoctor/mcp/server.js"
+      ]
+    }
+  }
+}
+```
+
+> For more details on how to setup MCP server, please refer to [Time Doctor MCP Server](./mcp/README.md).
+
+Once, the MCP server is setup, you can use the tools in your MCP client.
+
+Example prompts:
+
+```
+Get my timedoctor company name and id
+```
+
+If memory is enabled, you can also ask:
+```
+Remember my timedoctor company id
+```
+then,
+```
+Show my timedoctor worklogs and calculate total time in hours and minutes for the last 7 days 
+```
+
+---
+
+
+## Using in PHP
+
+Get [TimeDoctor `access_token`](https://webapi.timedoctor.com/doc#authentication) and use it.
 
 ```php
 

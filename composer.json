@@ -20,23 +20,17 @@
         }
     ],
     "require": {
-        "php": "^8.0|^7.1",
-        "sudiptochoudhury/php-api-client-forge": "dev-master"
+        "php": "*",
+        "sudiptochoudhury/php-api-client-forge": "*",
+        "sudiptochoudhury/php-cli": "*",
+        "psr/log": "^1.1"
     },
-    "require-dev": {
-        "sudiptochoudhury/php-cli": "dev-master",
-        "phpunit/phpunit": "^7.2.0",
-        "mockery/mockery": "^1.1.0",
-        "psr/log": "^1.0@dev"
-    },
+    "bin": [
+        "timedoctor"
+    ],
     "autoload": {
         "psr-4": {
             "SudiptoChoudhury\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Tests\\": "tests/"
         }
     },
     "extra": {

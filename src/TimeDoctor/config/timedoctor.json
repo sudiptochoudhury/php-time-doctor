@@ -15,7 +15,7 @@
         },
         "getCompanies": {
             "httpMethod": "GET",
-            "description": "Returns the user's account(s)",
+            "description": "Returns the user and assiociated company account(s)",
             "uri": "/v1.1/companies",
             "responseModel": "getResponse",
             "parameters": {
@@ -46,7 +46,7 @@
             "parameters": {
                 "company_id": {
                     "required": true,
-                    "location": "query"
+                    "location": "uri"
                 },
                 "emails": {
                     "location": "query"
@@ -64,7 +64,7 @@
             "parameters": {
                 "company_id": {
                     "required": true,
-                    "location": "query"
+                    "location": "uri"
                 },
                 "user_id": {
                     "required": true,
@@ -80,11 +80,11 @@
             "parameters": {
                 "company_id": {
                     "required": true,
-                    "location": "query"
+                    "location": "uri"
                 },
                 "user_id": {
                     "required": true,
-                    "location": "query"
+                    "location": "uri"
                 },
                 "offset": {
                     "location": "query"
@@ -108,15 +108,15 @@
             "parameters": {
                 "company_id": {
                     "required": true,
-                    "location": "query"
+                    "location": "uri"
                 },
                 "user_id": {
                     "required": true,
-                    "location": "query"
+                    "location": "uri"
                 },
                 "task_id": {
                     "required": true,
-                    "location": "query"
+                    "location": "uri"
                 }
             }
         },
@@ -128,7 +128,7 @@
             "parameters": {
                 "company_id": {
                     "required": true,
-                    "location": "query"
+                    "location": "uri"
                 },
                 "start_date": {
                     "required": true,
