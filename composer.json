@@ -20,7 +20,7 @@
         }
     ],
     "require": {
-        "php": "^7.1",
+        "php": "^8.0|^7.1",
         "sudiptochoudhury/php-api-client-forge": "dev-master"
     },
     "require-dev": {
