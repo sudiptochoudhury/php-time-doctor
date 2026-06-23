@@ -7,10 +7,15 @@ set_error_handler(static function ($errno, $errstr) {
     if ($errno === E_DEPRECATED || $errno === E_USER_DEPRECATED) {
         return true;
     }
-    if ($errno === E_WARNING
-        && strpos($errstr, 'foreach() argument must be of type array|object') !== false) {
-        return true;
+    $warnings = ['Trying to access array offset on false', 'foreach() argument must be of type array|object'];
 
+    if ($errno === E_WARNING) {
+        $suppress = array_reduce($warnings, function ($carry, $warning) use ($errstr) {
+            return $carry || strpos($errstr, $warning) !== false;
+        }, false);
+        if ($suppress) {
+            return true;
+        }
     }
     return false; // defer to PHP's normal handling for anything else
 });

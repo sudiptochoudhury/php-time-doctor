@@ -1,5 +1,8 @@
 ### Changelog
 
+### 0.1.1 - 24 June 2026
+- Add a few fixes to hide warnings and errors in the CLI output
+
 ### 0.1.0 - 24 June 2026
 - Add Nodejs MCP Server
 - Suppress PHP deprecation warnings for PHP 8.0 and above

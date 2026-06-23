@@ -85,7 +85,7 @@ class Cli extends AbstractCli
         $commandOptions = $this->commandOptions[$commandName];
 
         $orgDefaults = $this->config['defaults'] ?? [];
-        $selectedDefaults = [$orgDefaults['cc'], $orgDefaults['customer']];
+        $selectedDefaults = [$orgDefaults['cc'] ?? null, $orgDefaults['customer'] ?? null];
         $options = $this->getPayloadOptions($opt);
 
         if (empty($payload)) {
