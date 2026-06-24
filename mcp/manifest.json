@@ -1,0 +1,55 @@
+{
+  "manifest_version": "0.3",
+  "name": "timedoctor-mcp-stdio-server",
+  "display_name": "Time Doctor",
+  "version": "1.0.0",
+  "description": "MCP stdio server exposing the Time Doctor PHP CLI commands as tools.",
+  "long_description": "Access your Time Doctor account, companies, projects, users, tasks, and worklogs directly from Claude. Tools are generated at startup from the CLI's own service definition (src/TimeDoctor/config/timedoctor.json), so they stay in sync with the CLI. Each tool call shells out to `php timedoctor <command>` from the project root, which reads the auth token from timedoctor.json.",
+  "author": {
+    "name": "Sudipto Choudhury"
+  },
+  "license": "MIT",
+  "icon": "icon.png",
+  "server": {
+    "type": "node",
+    "entry_point": "server.js",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/server.js"],
+      "env": {
+        "TIMEDOCTOR_DIR": "${user_config.timedoctor_dir}",
+        "TIMEDOCTOR_PHP": "${user_config.timedoctor_php}"
+      }
+    }
+  },
+  "user_config": {
+    "timedoctor_dir": {
+      "type": "string",
+      "title": "Project Directory",
+      "description": "Project root containing the `timedoctor` CLI script and timedoctor.json auth token (defaults to the parent of the mcp/ folder)",
+      "required": false,
+      "sensitive": false
+    },
+    "timedoctor_php": {
+      "type": "string",
+      "title": "PHP Binary",
+      "description": "Path to the PHP binary that runs the timedoctor CLI (e.g. /opt/homebrew/bin/php or just `php`)",
+      "required": false,
+      "sensitive": false,
+      "default": "php"
+    }
+  },
+  "tools": [
+    { "name": "getCompanies", "description": "Returns the user and associated company account(s)" },
+    { "name": "getProjects",  "description": "Returns a collection of a user's projects" },
+    { "name": "getUsers",     "description": "Returns a collection of the company's users" },
+    { "name": "getUser",      "description": "Returns info about a user" },
+    { "name": "getUserTasks", "description": "Returns a collection of a user's tasks" },
+    { "name": "getUserTask",  "description": "Returns info about a user's task" },
+    { "name": "getWorklogs",  "description": "Returns a collection of all user's tasks and work time under the given company Id" }
+  ],
+  "tools_generated": true,
+  "compatibility": {
+    "platforms": ["darwin", "win32", "linux"]
+  }
+}
