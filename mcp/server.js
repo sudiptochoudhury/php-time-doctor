@@ -57,6 +57,9 @@ function buildTools() {
         description: meta && meta.required ? "(required)" : "",
       };
       if (meta && meta.required) required.push(paramName);
+      if (paramName === 'consolidated') {
+        properties[paramName].type = 'boolean'
+      }
     }
 
     tools.push({
